@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundHandler : MonoBehaviour
 {
     private Vector3 _rotation_centre;
-    private float rotationSpeed = 0.1f;
+    private float rotationSpeed = 0.03f;
     
     void Start()
     {
