@@ -16,8 +16,9 @@ public class DestroyByContact : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Collision!");
         Destroy(other.gameObject);
         Destroy(gameObject);
     }

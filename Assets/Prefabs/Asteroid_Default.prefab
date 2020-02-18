@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 1518752467022421070}
   - component: {fileID: 1518752467022421069}
   - component: {fileID: 1518752467022421068}
+  - component: {fileID: 6404168707543783567}
   m_Layer: 0
   m_Name: Asteroid_Default
   m_TagString: Untagged
@@ -170,8 +171,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518752467022421067}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7245c58257e01f649b2173bbda776b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &6404168707543783567
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518752467022421067}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
