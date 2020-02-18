@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerHandler : MonoBehaviour
 {
     private const float JUMP_AMOUNT = 5f;
-    private readonly Vector3 ORIGINAL_PLAYER_POSITION = new Vector3(-2f, 0, 0);
+    private const float ORIGINAL_PLAYER_POSITION_X = -2f;
+    private readonly Vector3 ORIGINAL_PLAYER_POSITION = new Vector3(ORIGINAL_PLAYER_POSITION_X, 0, 0);
 
     private Rigidbody2D playerRigidbody;
 
@@ -21,6 +22,11 @@ public class PlayerHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
+        }
+
+        if (transform.position.x < ORIGINAL_PLAYER_POSITION_X)
+        {
+            playerRigidbody.velocity = Vector2.right;
         }
     }
 }
