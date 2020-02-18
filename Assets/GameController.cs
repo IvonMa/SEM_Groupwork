@@ -7,10 +7,10 @@ public class GameController : MonoBehaviour
     public GameObject hazard;
 
     //TODO: fit these to screen size
-    public float xVal = 30.0f;
+    public float xVal = 15.0f;
     public float yVal = 0.0f;
     public float yMin = -3.0f;
-    public float yMax = 3.0f;
+    public float yMax = 4.0f;
     public float prevSpawn = 1.0f;
     public float spawnBuffer = 0.5f;
 
