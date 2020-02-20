@@ -18,6 +18,7 @@ public class BackgroundHandler : MonoBehaviour
 
     void Update()
     {
+        // Making the background keep rotating based on a given speed and a given center
         transform.RotateAround(_rotation_centre, Vector3.forward, rotationSpeed);
     }
 }
