@@ -32,13 +32,14 @@ public class PlayerHandler : MonoBehaviour
             {
                 playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
             }
+
             yield return new WaitForSeconds(jumpWait);
         }
     }
 
     void Update()
     {
-       if (playing)
+        if (playing)
         {
             // User control 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -50,12 +51,19 @@ public class PlayerHandler : MonoBehaviour
             {
                 playerRigidbody.velocity = Vector2.right;
             }
-        }   
+
+            // // Unit test start: player position
+            // if (transform.position.x < -15 || transform.position.x > 15f)
+            //     Debug.Log("Player position exception!");
+            // // Unit test end
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision!");
+        // // Unit test start
+        // Debug.Log("Player collision happen!");
+        // // Unit test end
         gameController.PlayerDeath();
     }
 
