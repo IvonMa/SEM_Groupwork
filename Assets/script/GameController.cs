@@ -11,8 +11,10 @@ public class GameController : MonoBehaviour
     private PlayerHandler playerHandler;
     private Scoring scoringHandler;
 
+    private List<GameObject> asteroids;
+
     //TODO: fit these to screen size
-    private float xVal = 15.0f;
+    private float xVal = 10.0f;
     private float yVal = 0.0f;
     private float yMin = -2.0f;
     private float yMax = 4.0f;
@@ -36,6 +38,8 @@ public class GameController : MonoBehaviour
     {
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         scoringHandler = GameObject.Find("Player").GetComponent<Scoring>();
+
+        asteroids = new List<GameObject>();
         StartCoroutine(SpawnAsteroids());
     }
 
@@ -52,6 +56,8 @@ public class GameController : MonoBehaviour
                 prevSpawn = yVal;
 
                 GameObject asteroid = Instantiate(hazard, spawnPosition, Quaternion.identity);
+
+                asteroids.Add(asteroid);
 
                 while (Mathf.Abs(prevScale - randScale) < scaleBuffer) randScale = Random.Range(scaleMin, scaleMax);
                 asteroid.transform.localScale = new Vector3(randScale, randScale, randScale);
@@ -86,7 +92,14 @@ public class GameController : MonoBehaviour
     public void PlayerDeath()
     {
         playing = false;
+
+        foreach(GameObject asteroid in asteroids)
+        {
+            Destroy(asteroid);
+        }
+
         playerHandler.SetPlayState(false);
         scoringHandler.SetPlayState(false);
+
     }
 }
