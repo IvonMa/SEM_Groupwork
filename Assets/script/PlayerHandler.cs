@@ -12,11 +12,14 @@ public class PlayerHandler : MonoBehaviour
 
     private bool playing = false;
 
-    private float jumpWait = 1.0f;
+    private float jumpWait = 0.98f;
+
+    private GameController gameController;
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         transform.position = ORIGINAL_PLAYER_POSITION;
         StartCoroutine(AutoJump());
     }
@@ -28,9 +31,8 @@ public class PlayerHandler : MonoBehaviour
             if (!playing)
             {
                 playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
-
-                yield return new WaitForSeconds(jumpWait);
             }
+            yield return new WaitForSeconds(jumpWait);
         }
     }
 
@@ -49,14 +51,18 @@ public class PlayerHandler : MonoBehaviour
                 playerRigidbody.velocity = Vector2.right;
             }
         }   
-       else
-        {
-            // User control 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playing = true;
-                playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
-            }
-        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Collision!");
+        gameController.PlayerDeath();
+    }
+
+    public void SetPlayState(bool state)
+    {
+        playing = state;
+        if (!state) playerRigidbody.transform.position = ORIGINAL_PLAYER_POSITION;
+        playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
     }
 }

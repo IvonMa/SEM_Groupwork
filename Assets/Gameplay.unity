@@ -350,7 +350,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.044626236, y: 0}
@@ -646,19 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazard: {fileID: 1518752467022421067, guid: ce704f59cd8706e4f984a07a1eb3fe4c, type: 3}
-  xVal: 15
-  yVal: 0
-  yMin: -3
-  yMax: 4
-  prevSpawn: 1
-  spawnBuffer: 0.5
-  spawnWait: 5
-  randScale: 1
-  prevScale: 1
-  scaleBuffer: 0.1
-  scaleMin: 0.25
-  scaleMax: 0.75
-  hazardSpeed: -2
+  playing: 0
 --- !u!4 &965691262
 Transform:
   m_ObjectHideFlags: 0
@@ -879,7 +867,6 @@ GameObject:
   - component: {fileID: 2131913006}
   - component: {fileID: 2131913008}
   - component: {fileID: 2131913009}
-  - component: {fileID: 2131913010}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1010,15 +997,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0.10972381, y: -0.0000011920929}
   m_Size: {x: 7.3666215, y: 7.3666215}
   m_Direction: 0
---- !u!114 &2131913010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131913003}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7245c58257e01f649b2173bbda776b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

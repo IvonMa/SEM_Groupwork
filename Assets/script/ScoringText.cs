@@ -16,6 +16,8 @@ public class ScoringText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = Scoring.getInstance().getCurrentScore().ToString();
+        string text = Scoring.getInstance().getCurrentScore().ToString();
+        if (text == "0") text = "Press Space Bar to Start";
+        scoreText.text = text;
     }
 }

@@ -8,29 +8,34 @@ public class GameController : MonoBehaviour
 
     public bool playing = false;
 
+    private PlayerHandler playerHandler;
+    private Scoring scoringHandler;
+
     //TODO: fit these to screen size
-    public float xVal = 15.0f;
-    public float yVal = 0.0f;
-    public float yMin = -3.0f;
-    public float yMax = 4.0f;
+    private float xVal = 15.0f;
+    private float yVal = 0.0f;
+    private float yMin = -2.0f;
+    private float yMax = 4.0f;
 
-    public float prevSpawn = 1.0f;
-    public float spawnBuffer = 0.5f;
+    private float prevSpawn = 1.0f;
+    private float spawnBuffer = 0.5f;
 
-    public float spawnWait = 5.0f;
+    private float spawnWait = 5.0f;
 
-    public float randScale = 1.0f;
-    public float prevScale = 1.0f;
+    private float randScale = 1.0f;
+    private float prevScale = 1.0f;
 
-    public float scaleBuffer = 0.1f;
-    public float scaleMin = 0.25f;
-    public float scaleMax = 0.75f;
+    private float scaleBuffer = 0.1f;
+    private float scaleMin = 0.25f;
+    private float scaleMax = 0.65f;
 
-    public float hazardSpeed = -2.0f;
+    private float hazardSpeed = -2.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        scoringHandler = GameObject.Find("Player").GetComponent<Scoring>();
         StartCoroutine(SpawnAsteroids());
     }
 
@@ -56,8 +61,8 @@ public class GameController : MonoBehaviour
 
                 if (spawnWait > 1.0f) spawnWait -= 0.01f;
 
-                yield return new WaitForSeconds(spawnWait);
             }
+            yield return new WaitForSeconds(spawnWait);
         }
     }
 
@@ -71,8 +76,17 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 playing = true;
+                playerHandler.SetPlayState(true);
+                scoringHandler.SetPlayState(true);
             }
         }
         
+    }
+
+    public void PlayerDeath()
+    {
+        playing = false;
+        playerHandler.SetPlayState(false);
+        scoringHandler.SetPlayState(false);
     }
 }
