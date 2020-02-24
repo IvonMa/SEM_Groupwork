@@ -85,9 +85,7 @@ public class GameController : MonoBehaviour
 
                 case(DEATH):
                     //highscore screen
-                    gameState= PAUSED;
-                    playerHandler.SetPlayState(PAUSED);
-                    scoringHandler.SetPlayState(PAUSED);
+                    
 
                     break;
                 default:
@@ -123,6 +121,12 @@ public class GameController : MonoBehaviour
             case(PLAYING):
                 break;
             case(DEATH):
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    gameState= PAUSED;
+                    playerHandler.SetPlayState(PAUSED);
+                    scoringHandler.SetPlayState(PAUSED);
+                }
                 break;
             default:
                 break;
