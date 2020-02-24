@@ -22,10 +22,21 @@ public class Scoring : MonoBehaviour
     private const int PAUSED = 1;
     private const int PLAYING = 2;
     private const int DEATH = 3;
-
+    public List<string> randfacts = new List<string>();
     void Awake()
     {
         instance = this;
+
+
+        
+        string path = "Assets/SpaceFacts.txt";
+
+        string line; //current line
+        System.IO.StreamReader file = new System.IO.StreamReader(path);
+        while((line = file.ReadLine()) != null)
+         {
+             randfacts.Add(line);
+         }
     }
 
     public static Scoring getInstance()
@@ -79,6 +90,17 @@ public class Scoring : MonoBehaviour
     {
         if (display) return highscore;
         else return 0;
+    }
+
+    public string getRandomFact()
+    {
+
+        if (display)
+            return randfacts[0];
+        else if(score == 0)
+            return randfacts[0];
+        else return "";
+
     }
 
     public void SetPlayState(int state)
