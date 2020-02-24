@@ -7,10 +7,10 @@ public class GameController : MonoBehaviour
     public GameObject hazard;
 
     public int gameState = 1;
-    private int START = 0;
-    private int PAUSED = 1;
-    private int PLAYING = 2;
-    private int DEATH = 3;
+    private const int START = 0;
+    private const int PAUSED = 1;
+    private const int PLAYING = 2;
+    private const int DEATH = 3;
 
 
     private PlayerHandler playerHandler;
@@ -86,10 +86,14 @@ public class GameController : MonoBehaviour
                 case(DEATH):
                     //highscore screen
                     gameState= PAUSED;
+                    playerHandler.SetPlayState(PAUSED);
+                    scoringHandler.SetPlayState(PAUSED);
 
                     break;
                 default:
                     gameState = START;
+                    playerHandler.SetPlayState(START);
+                    scoringHandler.SetPlayState(START);
                     break;
             
               
@@ -111,7 +115,7 @@ public class GameController : MonoBehaviour
             case(PAUSED):
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    playing = true;
+                    gameState=PLAYING;
                     playerHandler.SetPlayState(PLAYING);
                     scoringHandler.SetPlayState(PLAYING);
                 }
@@ -131,7 +135,6 @@ public class GameController : MonoBehaviour
     public void PlayerDeath()
     {
         gameState = DEATH;
-
         foreach(GameObject asteroid in asteroids)
         {
             Destroy(asteroid);

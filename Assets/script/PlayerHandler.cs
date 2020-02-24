@@ -10,9 +10,13 @@ public class PlayerHandler : MonoBehaviour
 
     private Rigidbody2D playerRigidbody;
 
-    private bool playing = false;
+    private int gameState = 1;
+    private const int START = 0;
+    private const int PAUSED = 1;
+    private const int PLAYING = 2;
+    private const int DEATH = 3;
 
-    private float jumpWait = 0.98f;
+    private float jumpWait = 0.99f;
 
     private GameController gameController;
 
@@ -28,7 +32,7 @@ public class PlayerHandler : MonoBehaviour
     {
         while (true)
         {
-            if (!playing)
+            if (gameState==PAUSED)
             {
                 playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
             }
@@ -39,7 +43,7 @@ public class PlayerHandler : MonoBehaviour
 
     void Update()
     {
-        if (playing)
+        if (gameState==PLAYING)
         {
             // User control 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -67,10 +71,10 @@ public class PlayerHandler : MonoBehaviour
         gameController.PlayerDeath();
     }
 
-    public void SetPlayState(bool state)
+    public void SetPlayState(int state)
     {
-        playing = state;
-        if (!state) playerRigidbody.transform.position = ORIGINAL_PLAYER_POSITION;
+        gameState = state;
+        if (gameState==PAUSED) playerRigidbody.transform.position = ORIGINAL_PLAYER_POSITION;
         playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
     }
 }

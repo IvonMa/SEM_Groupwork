@@ -10,8 +10,12 @@ public class Scoring : MonoBehaviour
 
     System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
 
-    private bool playing = false;
-
+    private int gameState = 1;
+    private const int START = 0;
+    private const int PAUSED = 1;
+    private const int PLAYING = 2;
+    private const int DEATH = 3;
+    
     void Awake()
     {
         instance = this;
@@ -26,8 +30,27 @@ public class Scoring : MonoBehaviour
     void Update()
     {
         //score = (int)Time.realtimeSinceStartup;
-        if (playing) score = (int)(timer.ElapsedMilliseconds / 1000);
-        else score = 0;
+
+
+        switch(gameState)
+
+        {
+            case(START):
+                score = 0;
+                break;
+            case(PAUSED):
+                score = 0;
+                break;
+            case(PLAYING):
+                score = (int)(timer.ElapsedMilliseconds / 1000);
+                break;
+            case(DEATH):
+                //where we implement high scores
+                break;
+            default:
+                break;  
+        }
+        
     }
 
     public int getCurrentScore()
@@ -35,10 +58,10 @@ public class Scoring : MonoBehaviour
         return score;
     }
 
-    public void SetPlayState(bool state)
+    public void SetPlayState(int state)
     {
-        playing = state;
-        if (state) timer.Start();
+        gameState = state;
+        if (state==PLAYING) timer.Start();
         else
         {
             timer.Stop();
