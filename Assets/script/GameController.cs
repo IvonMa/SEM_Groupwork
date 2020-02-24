@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     private PlayerHandler playerHandler;
     private Scoring scoringHandler;
+    private Music _music;
 
     private List<GameObject> asteroids;
 
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
     {
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         scoringHandler = GameObject.Find("Player").GetComponent<Scoring>();
+        _music = Music.GetInstance();
 
         asteroids = new List<GameObject>();
         StartCoroutine(SpawnAsteroids());
@@ -66,8 +68,8 @@ public class GameController : MonoBehaviour
                 asteroid.GetComponent<Rigidbody2D>().velocity = new Vector2(hazardSpeed, 0);
 
                 if (spawnWait > 1.0f) spawnWait -= 0.01f;
-
             }
+
             yield return new WaitForSeconds(spawnWait);
         }
     }
@@ -84,22 +86,22 @@ public class GameController : MonoBehaviour
                 playing = true;
                 playerHandler.SetPlayState(true);
                 scoringHandler.SetPlayState(true);
+                _music.PlayGameMusic();
             }
         }
-        
     }
 
     public void PlayerDeath()
     {
         playing = false;
 
-        foreach(GameObject asteroid in asteroids)
+        foreach (GameObject asteroid in asteroids)
         {
             Destroy(asteroid);
         }
 
         playerHandler.SetPlayState(false);
         scoringHandler.SetPlayState(false);
-
+        _music.PlayMenuMusic();
     }
 }
