@@ -6,7 +6,12 @@ public class GameController : MonoBehaviour
 {
     public GameObject hazard;
 
-    public bool playing = false;
+    public int gameState = 1;
+    private int START = 0;
+    private int PAUSED = 1;
+    private int PLAYING = 2;
+    private int DEATH = 3;
+
 
     private PlayerHandler playerHandler;
     private Scoring scoringHandler;
@@ -47,25 +52,47 @@ public class GameController : MonoBehaviour
     {
         while (true)
         {
-            if (playing)
+            switch(gameState)
             {
-                while (Mathf.Abs(prevSpawn - yVal) < spawnBuffer) yVal = Random.Range(yMin, yMax);
-                Vector2 spawnPosition = new Vector2(
-                    xVal,
-                    yVal);
-                prevSpawn = yVal;
 
-                GameObject asteroid = Instantiate(hazard, spawnPosition, Quaternion.identity);
 
-                asteroids.Add(asteroid);
+                case(START):
+                    //startscreen 
+                    break;
+                case(PAUSED):
+                    break;
+                case(PLAYING):
 
-                while (Mathf.Abs(prevScale - randScale) < scaleBuffer) randScale = Random.Range(scaleMin, scaleMax);
-                asteroid.transform.localScale = new Vector3(randScale, randScale, randScale);
-                prevScale = randScale;
+                    while (Mathf.Abs(prevSpawn - yVal) < spawnBuffer) yVal = Random.Range(yMin, yMax);
+                    Vector2 spawnPosition = new Vector2(xVal, yVal);
+                    prevSpawn = yVal;
 
-                asteroid.GetComponent<Rigidbody2D>().velocity = new Vector2(hazardSpeed, 0);
+                    GameObject asteroid = Instantiate(hazard, spawnPosition, Quaternion.identity);
 
-                if (spawnWait > 1.0f) spawnWait -= 0.01f;
+                    asteroids.Add(asteroid);
+
+                    while (Mathf.Abs(prevScale - randScale) < scaleBuffer) randScale = Random.Range(scaleMin, scaleMax);
+                    asteroid.transform.localScale = new Vector3(randScale, randScale, randScale);
+                    prevScale = randScale;
+
+                    asteroid.GetComponent<Rigidbody2D>().velocity = new Vector2(hazardSpeed, 0);
+
+                    if (spawnWait > 1.0f) spawnWait -= 0.01f;
+                    break;
+
+
+
+
+                case(DEATH):
+                    //highscore screen
+                    gameState= PAUSED;
+
+                    break;
+                default:
+                    gameState = START;
+                    break;
+            
+              
 
             }
             yield return new WaitForSeconds(spawnWait);
@@ -76,30 +103,42 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playing)
+       switch(gameState)
+
         {
-            // User control 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playing = true;
-                playerHandler.SetPlayState(true);
-                scoringHandler.SetPlayState(true);
-            }
+            case(START):
+                break;
+            case(PAUSED):
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    playing = true;
+                    playerHandler.SetPlayState(PLAYING);
+                    scoringHandler.SetPlayState(PLAYING);
+                }
+                break;
+            case(PLAYING):
+                break;
+            case(DEATH):
+                break;
+            default:
+                break;
+            
+            
         }
         
     }
 
     public void PlayerDeath()
     {
-        playing = false;
+        gameState = DEATH;
 
         foreach(GameObject asteroid in asteroids)
         {
             Destroy(asteroid);
         }
-
-        playerHandler.SetPlayState(false);
-        scoringHandler.SetPlayState(false);
+        spawnWait = 5.0f;
+        playerHandler.SetPlayState(DEATH);
+        scoringHandler.SetPlayState(DEATH);
 
     }
 }
