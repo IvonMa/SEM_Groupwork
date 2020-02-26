@@ -154,11 +154,11 @@ public class GameController : MonoBehaviour
 
     public void PlayerDeath()
     {
-        // Unit Test Start
-        // Test whether the game is in right state when this function is called
-        if (gameState != PLAYING && gameState != DEATH)
-            Debug.Log("Game is in wrong state when player dead. Current state is:" + gameState);
-        // Unit Test End
+        // // Unit Test Start
+        // // Test whether the game is in right state when this function is called
+        // if (gameState != PLAYING && gameState != DEATH)
+        //     Debug.Log("Game is in wrong state when player dead. Current state is:" + gameState);
+        // // Unit Test End
            
         if(gameState!= DEATH)
         {
