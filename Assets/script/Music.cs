@@ -24,12 +24,14 @@ public class Music : MonoBehaviour
 
     public void PlayMenuMusic()
     {
+        // Debug.Log("PlayMenuMusic");
         game_musis.Stop();
         menu_music.Play();
     }
 
     public void PlayGameMusic()
     {
+        // Debug.Log("PlayGameMusic");
         menu_music.Stop();
         game_musis.Play();
     }
