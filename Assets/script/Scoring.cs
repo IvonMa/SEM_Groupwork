@@ -104,13 +104,22 @@ public class Scoring : MonoBehaviour
 
     public string getRandomFact()
     {
-       
+        string fact = "";
         if (display)
-            return randfacts[randnum];
-        else if(score == 0)
-            return randfacts[randnum];
-        else return "";
-
+        {
+            fact = randfacts[randnum];
+            // // Unit Test Start
+            // if(fact.Equals("")) Debug.Log("Got empty random fact.");
+            // // Unit Test End
+        }
+        if (score == 0)
+        {
+            fact = randfacts[randnum];
+            // // Unit Test Start
+            // if(fact.Equals("")) Debug.Log("Got empty random fact.");
+            // // Unit Test End
+        }
+        return fact;
     }
 
     public void SetPlayState(int state)
