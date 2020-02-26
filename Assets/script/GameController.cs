@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
     {
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         scoringHandler = GameObject.Find("Player").GetComponent<Scoring>();
-
+        Scoring.getInstance().getRandNumberIndex();
         asteroids = new List<GameObject>();
         StartCoroutine(SpawnAsteroids());
     }
@@ -112,7 +112,7 @@ public class GameController : MonoBehaviour
                 break;
             case(PAUSED):
                 if (Input.GetKeyDown(KeyCode.Space))
-                {
+                {   
                     gameState=PLAYING;
                     playerHandler.SetPlayState(PLAYING);
                     scoringHandler.SetPlayState(PLAYING);
@@ -146,6 +146,7 @@ public class GameController : MonoBehaviour
         spawnWait = 5.0f;
         playerHandler.SetPlayState(DEATH);
         scoringHandler.SetPlayState(DEATH);
+        Scoring.getInstance().getRandNumberIndex();
 
     }
 }

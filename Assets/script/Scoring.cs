@@ -15,6 +15,8 @@ public class Scoring : MonoBehaviour
 
     private bool display= false;
 
+    private int randnum = 0;
+
     System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
 
     private int gameState = 1;
@@ -34,9 +36,10 @@ public class Scoring : MonoBehaviour
         string line; //current line
         System.IO.StreamReader file = new System.IO.StreamReader(path);
         while((line = file.ReadLine()) != null)
-         {
-             randfacts.Add(line);
-         }
+        {
+            randfacts.Add(line);
+        }
+        
          
     }
 
@@ -93,13 +96,19 @@ public class Scoring : MonoBehaviour
         else return 0;
     }
 
+    public void getRandNumberIndex()
+    {
+        randnum = UnityEngine.Random.Range(0,randfacts.Count);
+        
+    }
+
     public string getRandomFact()
     {
-
+       
         if (display)
-            return randfacts[0];
+            return randfacts[randnum];
         else if(score == 0)
-            return randfacts[0];
+            return randfacts[randnum];
         else return "";
 
     }
@@ -148,6 +157,9 @@ public class Scoring : MonoBehaviour
          else{
             //insert message of not reaching the high score
          }
+         //unit test
+        //if(findHighScore() != getCurrentScore())
+        //{ Debug.Log("High Score not being saved to game textfile"); }
     }
 
 
