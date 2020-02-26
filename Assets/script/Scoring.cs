@@ -37,6 +37,7 @@ public class Scoring : MonoBehaviour
          {
              randfacts.Add(line);
          }
+         
     }
 
     public static Scoring getInstance()

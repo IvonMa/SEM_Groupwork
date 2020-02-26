@@ -14,7 +14,7 @@ public class ScoringText : MonoBehaviour
     {
         currScoreText = transform.Find("CurrentScore").GetComponent<TextMeshProUGUI>();
         highScoreText = transform.Find("HighScore").GetComponent<TextMeshProUGUI>();
-        factText = transform.Find("FactSection").GetComponent<TextMeshProUGUI>();
+        factText = transform.Find("RandFact").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
