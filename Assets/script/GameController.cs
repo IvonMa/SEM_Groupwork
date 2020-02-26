@@ -1,16 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
+    private static GameController instance;
+
+    public static GameController GetInstance()
+    {
+        return instance;
+    }
     public GameObject hazard;
 
-    public int gameState = 1;
-    private const int START = 0;
-    private const int PAUSED = 1;
-    private const int PLAYING = 2;
-    private const int DEATH = 3;
+    private int gameState = 1;
+
+    public const int START = 0;
+    public const int PAUSED = 1;
+    public const int PLAYING = 2;
+    public const int DEATH = 3;
 
 
     private PlayerHandler playerHandler;
@@ -37,6 +46,11 @@ public class GameController : MonoBehaviour
     private float scaleMax = 0.65f;
 
     private float hazardSpeed = -2.0f;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -161,4 +175,10 @@ public class GameController : MonoBehaviour
         
 
     }
+
+    public int GetGameState()
+    {
+        return gameState;
+    }
+    
 }
