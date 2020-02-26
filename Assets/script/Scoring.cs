@@ -139,9 +139,15 @@ public class Scoring : MonoBehaviour
 
     
         string path = "Assets/HighScore.txt";
+        
+        // Unit Test
+        // Test the high score file exists
+        if(!File.Exists(path)) Debug.Log("Cannot find high score file when trying to read it.");
+        // Unit Test End
 
         //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path); 
+        
         string line = reader.ReadToEnd();
         reader.Close();
         
