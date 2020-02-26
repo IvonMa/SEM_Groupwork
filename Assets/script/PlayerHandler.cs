@@ -35,6 +35,10 @@ public class PlayerHandler : MonoBehaviour
             if (gameState==PAUSED)
             {
                 playerRigidbody.velocity = Vector2.up * JUMP_AMOUNT;
+                // Unit Test
+                // Test whether the auto jump amount is too big which cause the player go out of the display
+                // if(playerRigidbody.transform.position.y>10f) Debug.Log("Auto Jump cause player go out of the display. Jump amount should be deceased");
+                // Unit Test End
             }
 
             yield return new WaitForSeconds(jumpWait);
