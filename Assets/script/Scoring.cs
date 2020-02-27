@@ -76,6 +76,13 @@ public class Scoring : MonoBehaviour
                     }
                 }
                 display = true;
+                //unit test
+                //if display is true, then high score screen becomes visible
+                if(display)
+                {
+                    Debug.Log("High Score Screen visible");
+                }
+
                 break;
             default:
                 score = 0;
@@ -164,17 +171,24 @@ public class Scoring : MonoBehaviour
     {
          if(getCurrentScore() > getHighScore())
          {
+            //unit test
+            //If the current score is greater than the highscore, the high score should be updated
+            Debug.Log("High Score to be updated.");
             string path = "Assets/HighScore.txt";
             StreamWriter writer = new StreamWriter(path, false);
             writer.WriteLine(getCurrentScore());
             writer.Close();
          }
          else{
+            //Unit Test
+            //If the current score is less than or equal to than the highscore, the high score shouldn't be updated
+            Debug.Log("High Score won't be updated.");
             //insert message of not reaching the high score
          }
          //unit test
-        //if(findHighScore() != getCurrentScore())
-        //{ Debug.Log("High Score not being saved to game textfile"); }
+         //is the high score being saved if the current score exceeds the previous highscore
+        if(findHighScore() != getCurrentScore())
+        { Debug.Log("High Score not being saved to game textfile"); }
     }
 
 
