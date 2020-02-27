@@ -51,15 +51,17 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        _music = Music.GetInstance();
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         scoringHandler = GameObject.Find("Player").GetComponent<Scoring>();
 
-        _music = Music.GetInstance();
+        
 
 
         Scoring.getInstance().getRandNumberIndex();
@@ -162,7 +164,7 @@ public class GameController : MonoBehaviour
 
     public void PlayerDeath()
     {
-<
+
         // // Unit Test Start
         // // Test whether the game is in right state when this function is called
         // if (gameState != PLAYING && gameState != DEATH)
@@ -184,9 +186,9 @@ public class GameController : MonoBehaviour
         
         _music.PlayMenuMusic();
     }
-}
 
-    }
+
+    
 
     public int GetGameState()
     {

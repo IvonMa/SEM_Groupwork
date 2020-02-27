@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,14 @@ public class Music : MonoBehaviour
     private AudioSource game_music;
     private AudioSource menu_music;
 
-    void Start()
+    private void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+        
         menu_music = GameObject.Find("MenuMusic").GetComponent<AudioSource>();
         game_music = GameObject.Find("GameMusic").GetComponent<AudioSource>();
         PlayMenuMusic();
