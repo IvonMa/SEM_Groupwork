@@ -147,6 +147,14 @@ public class Scoring : MonoBehaviour
         {
             instr = "Protect the Planet"; 
         }
+
+        // unit test
+        // if string'instr' is empty, then the title is not being saved
+        // if(instr == "")
+        // {
+        // Debug.Log("Title not being saved.");
+    	// }
+
         return instr;
     }
     public string getGameEnd()
@@ -156,8 +164,15 @@ public class Scoring : MonoBehaviour
         {
             statement = "Game Over!"; 
         }
+        // unit test
+    	// if string statment is empty, Game Over message isn't being displayed.
+    	// if (statement == "") Debug.Log("Game over message isn't being displayed.");
+        // Unit test end
         return statement;
+
     }
+    
+
     public string getWinStatement()
     {
         string statement = "";
