@@ -44,11 +44,10 @@ public class WarningDisplay : MonoBehaviour
             int remainingTime = 3 - timeDelta;
             Debug.Log("Maximum." + ",timeDelta=" + timeDelta);
 
-            if (remainingTime >= 0)
+            if (remainingTime >= 1)
             {
-                warningText = "WARNING! You will go out of this galaxy in " + remainingTime + " seconds!";
+                warningText = "WARNING!\nYou will become lost in space in " + remainingTime + " seconds!";
                 text.color = Color.red;
-                text.fontSize = 16;
             }
             else
             {
