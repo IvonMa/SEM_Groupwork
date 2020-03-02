@@ -25,12 +25,12 @@ public class Scoring : MonoBehaviour
     private const int PLAYING = 2;
     private const int DEATH = 3;
     public List<string> randfacts = new List<string>();
-    void Awake()
+    void Awake() 
     {
         instance = this;
 
 
-        
+        try{
         string path = "Assets/SpaceFacts.txt";
 
         string line; //current line
@@ -39,6 +39,8 @@ public class Scoring : MonoBehaviour
         {
             randfacts.Add(line);
         }
+    }
+    catch(Exception e){}
         
          
     }
@@ -78,10 +80,10 @@ public class Scoring : MonoBehaviour
                 display = true;
                 //unit test
                 //if display is true, then high score screen becomes visible
-                if(display)
-                {
-                    Debug.Log("High Score Screen visible");
-                }
+               // if(display)
+               // {
+                //    Debug.Log("High Score Screen visible");
+               // }
 
                 break;
             default:
@@ -114,20 +116,90 @@ public class Scoring : MonoBehaviour
         string fact = "";
         if (display)
         {
-            fact = randfacts[randnum];
+            fact = "Fact:\n" + randfacts[randnum];
             // // Unit Test Start
             // if(fact.Equals("")) Debug.Log("Got empty random fact.");
             // // Unit Test End
         }
         if (score == 0)
         {
-            fact = randfacts[randnum];
+            fact = "Fact:\n" + randfacts[randnum];
             // // Unit Test Start
             // if(fact.Equals("")) Debug.Log("Got empty random fact.");
             // // Unit Test End
         }
         return fact;
     }
+
+    public string getInstructions()
+    {
+        string instr = "";
+        if (score == 0)
+        {
+            instr = "How to play: \n\nClick spacebar to go higher as gravity pulls you down.\n\n...But not too high or you'll get lost in space...\n\nGood luck!"; 
+        }
+        return instr;
+    }
+    public string getTitle()
+    {
+        string instr = "";
+        if (score == 0)
+        {
+            instr = "Protect the Planet"; 
+        }
+        return instr;
+    }
+    public string getGameEnd()
+    {
+        string statement = "";
+        if (display)
+        {
+            statement = "Game Over!"; 
+        }
+        return statement;
+    }
+    public string getWinStatement()
+    {
+        string statement = "";
+        if (display)
+        {
+            if(getCurrentScore() == getHighScore())
+            {
+                statement = "Congratulations, New High Score!"; 
+            }
+            else{
+                statement = "";
+            }
+        }
+        return statement;
+    }
+    public string getLoseStatement()
+    {
+        string statement = "";
+        if (display)
+        {
+            if(getCurrentScore() == getHighScore())
+            {
+                statement = ""; 
+            }
+            else{
+                statement = "Unlucky, better luck next time...";
+            }
+        }
+        return statement;
+    }
+
+
+    public string getRestartMessage()
+    {
+        string statement = "";
+        if (display)
+        {
+            statement = "Click spaceBar to restart...";
+        }
+        return statement;
+    }
+
 
     public void SetPlayState(int state)
     {
@@ -149,7 +221,7 @@ public class Scoring : MonoBehaviour
         
         // Unit Test
         // Test the high score file exists
-        if(!File.Exists(path)) Debug.Log("Cannot find high score file when trying to read it.");
+        //if(!File.Exists(path)) Debug.Log("Cannot find high score file when trying to read it.");
         // Unit Test End
 
         //Read the text from directly from the test.txt file
@@ -173,7 +245,8 @@ public class Scoring : MonoBehaviour
          {
             //unit test
             //If the current score is greater than the highscore, the high score should be updated
-            Debug.Log("High Score to be updated.");
+            //Debug.Log("High Score to be updated.");
+
             string path = "Assets/HighScore.txt";
             StreamWriter writer = new StreamWriter(path, false);
             writer.WriteLine(getCurrentScore());
@@ -182,13 +255,13 @@ public class Scoring : MonoBehaviour
          else{
             //Unit Test
             //If the current score is less than or equal to than the highscore, the high score shouldn't be updated
-            Debug.Log("High Score won't be updated.");
+            //Debug.Log("High Score won't be updated.");
             //insert message of not reaching the high score
          }
          //unit test
          //is the high score being saved if the current score exceeds the previous highscore
-        if(findHighScore() != getCurrentScore())
-        { Debug.Log("High Score not being saved to game textfile"); }
+        //if(findHighScore() != getCurrentScore())
+        //{ Debug.Log("High Score not being saved to game textfile"); }
     }
 
 
