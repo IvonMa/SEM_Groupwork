@@ -15,6 +15,7 @@ public class ScoringText : MonoBehaviour
     private TextMeshProUGUI winStatementText;
     private TextMeshProUGUI loseStatementText;
     private TextMeshProUGUI restartMessageText;
+    private TextMeshProUGUI levelText;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class ScoringText : MonoBehaviour
         winStatementText = transform.Find("WinStatement").GetComponent<TextMeshProUGUI>();
         loseStatementText = transform.Find("LoseStatement").GetComponent<TextMeshProUGUI>();
         restartMessageText = transform.Find("RestartMessage").GetComponent<TextMeshProUGUI>();
+        levelText = transform.Find("LevelMessage").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -62,6 +64,9 @@ public class ScoringText : MonoBehaviour
 
         text = Scoring.getInstance().getRestartMessage();
         restartMessageText.text = text;
+
+        text = Scoring.getInstance().getLevelMessage();
+        levelText.text = text;
         
     }
 }

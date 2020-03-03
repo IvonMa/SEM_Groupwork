@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
     private float prevSpawn = 1.0f;
     private float spawnBuffer = 0.5f;
 
-    private float spawnWait = 5.0f;
+    private float spawnWait = 3.0f;
 
     private float randScale = 1.0f;
     private float prevScale = 1.0f;
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
     private float scaleMin = 0.25f;
     private float scaleMax = 0.65f;
 
-    private float hazardSpeed = -2.0f;
+    private float hazardSpeed = -4.0f;
 
     private void Awake()
     {
@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
                     break;
 
 
-                if (spawnWait > 1.0f) spawnWait -= 0.01f;
+                    if (spawnWait > 1.0f) spawnWait -= 0.01f;
 
 
 
@@ -180,7 +180,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(asteroid);
         }
-        spawnWait = 5.0f;
+        spawnWait = 3.0f;
         playerHandler.SetPlayState(DEATH);
         scoringHandler.SetPlayState(DEATH);
         
