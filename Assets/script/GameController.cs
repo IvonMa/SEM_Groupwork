@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
     private float spawnBuffer = 0.5f;
 
     private float spawnWait = 3.0f;
+    private float spawnMin = 2.0f;
+    private float spawnMax = 3.0f;
 
     private float randScale = 1.0f;
     private float prevScale = 1.0f;
@@ -46,7 +48,9 @@ public class GameController : MonoBehaviour
     private float scaleMin = 0.25f;
     private float scaleMax = 0.65f;
 
-    private float hazardSpeed = -4.0f;
+    private float speedMin = 2.0f;
+    private float speedMax = 3.0f;
+    private float hazardSpeed = 4.0f;
 
     private void Awake()
     {
@@ -84,7 +88,7 @@ public class GameController : MonoBehaviour
                 case(PAUSED):
                     break;
                 case(PLAYING):
-
+                    //determine spawn location
                     while (Mathf.Abs(prevSpawn - yVal) < spawnBuffer) yVal = Random.Range(yMin, yMax);
                     Vector2 spawnPosition = new Vector2(xVal, yVal);
                     prevSpawn = yVal;
@@ -93,24 +97,25 @@ public class GameController : MonoBehaviour
 
                     asteroids.Add(asteroid);
 
+                    //determine hazard size
                     while (Mathf.Abs(prevScale - randScale) < scaleBuffer) randScale = Random.Range(scaleMin, scaleMax);
                     asteroid.transform.localScale = new Vector3(randScale, randScale, randScale);
                     prevScale = randScale;
 
-                    asteroid.GetComponent<Rigidbody2D>().velocity = new Vector2(hazardSpeed, 0);
+                    //determine hazard speed
+                    if (speedMax < 5.0f) speedMax += 0.025f;
+                    hazardSpeed = Random.Range(speedMin, speedMax);
 
-                    if (spawnWait > 1.0f) spawnWait -= 0.01f;
+                    asteroid.GetComponent<Rigidbody2D>().velocity = new Vector2(-hazardSpeed, 0);
+
+                    //determine next spawn time
+                    if (spawnMin > 0.5f) spawnMin -= 0.005f;
+                    if (spawnMax > 1.5f) spawnMax -= 0.005f;
+                    spawnWait = Random.Range(spawnMin, spawnMax);
                     break;
-
-
-                    if (spawnWait > 1.0f) spawnWait -= 0.01f;
-
-
-
                 case(DEATH):
                     //highscore screen
                     
-
                     break;
                 default:
                     gameState = START;
