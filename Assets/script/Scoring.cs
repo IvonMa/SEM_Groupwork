@@ -144,7 +144,7 @@ public class Scoring : MonoBehaviour
         {
             instr = "                         How to play: \n\n" +
                 "               Click spacebar to Jump\n\n" +
-                "   not too high or you'll get lost in space"; 
+                "But not too high or you'll get lost in space"; 
         }
         return instr;
     }
