@@ -14,8 +14,14 @@ public class Scoring : MonoBehaviour
 
 
     private bool display= false;
+    
+    public bool GetDisplayState()
+    {
+        return display;
+    }
 
-    private int randnum = 0;
+
+    
 
     System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
 
@@ -24,23 +30,11 @@ public class Scoring : MonoBehaviour
     private const int PAUSED = 1;
     private const int PLAYING = 2;
     private const int DEATH = 3;
-    public List<string> randfacts = new List<string>();
-    void Awake()
+    
+    void Awake() 
     {
         instance = this;
-
-
-        
-        string path = "Assets/SpaceFacts.txt";
-
-        string line; //current line
-        System.IO.StreamReader file = new System.IO.StreamReader(path);
-        while((line = file.ReadLine()) != null)
-        {
-            randfacts.Add(line);
-        }
-        
-         
+ 
     }
 
     public static Scoring getInstance()
@@ -78,10 +72,10 @@ public class Scoring : MonoBehaviour
                 display = true;
                 //unit test
                 //if display is true, then high score screen becomes visible
-                if(display)
-                {
-                    Debug.Log("High Score Screen visible");
-                }
+               // if(display)
+               // {
+                //    Debug.Log("High Score Screen visible");
+               // }
 
                 break;
             default:
@@ -103,31 +97,8 @@ public class Scoring : MonoBehaviour
         else return 0;
     }
 
-    public void getRandNumberIndex()
-    {
-        randnum = UnityEngine.Random.Range(0,randfacts.Count);
-        
-    }
 
-    public string getRandomFact()
-    {
-        string fact = "";
-        if (display)
-        {
-            fact = randfacts[randnum];
-            // // Unit Test Start
-            // if(fact.Equals("")) Debug.Log("Got empty random fact.");
-            // // Unit Test End
-        }
-        if (score == 0)
-        {
-            fact = randfacts[randnum];
-            // // Unit Test Start
-            // if(fact.Equals("")) Debug.Log("Got empty random fact.");
-            // // Unit Test End
-        }
-        return fact;
-    }
+
 
     public void SetPlayState(int state)
     {
@@ -149,7 +120,7 @@ public class Scoring : MonoBehaviour
         
         // Unit Test
         // Test the high score file exists
-        if(!File.Exists(path)) Debug.Log("Cannot find high score file when trying to read it.");
+        //if(!File.Exists(path)) Debug.Log("Cannot find high score file when trying to read it.");
         // Unit Test End
 
         //Read the text from directly from the test.txt file
@@ -173,7 +144,8 @@ public class Scoring : MonoBehaviour
          {
             //unit test
             //If the current score is greater than the highscore, the high score should be updated
-            Debug.Log("High Score to be updated.");
+            //Debug.Log("High Score to be updated.");
+
             string path = "Assets/HighScore.txt";
             StreamWriter writer = new StreamWriter(path, false);
             writer.WriteLine(getCurrentScore());
@@ -182,13 +154,13 @@ public class Scoring : MonoBehaviour
          else{
             //Unit Test
             //If the current score is less than or equal to than the highscore, the high score shouldn't be updated
-            Debug.Log("High Score won't be updated.");
+            //Debug.Log("High Score won't be updated.");
             //insert message of not reaching the high score
          }
          //unit test
          //is the high score being saved if the current score exceeds the previous highscore
-        if(findHighScore() != getCurrentScore())
-        { Debug.Log("High Score not being saved to game textfile"); }
+        //if(findHighScore() != getCurrentScore())
+        //{ Debug.Log("High Score not being saved to game textfile"); }
     }
 
 
