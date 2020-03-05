@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3766e3415015a648abbca9308a6e4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hazard: {fileID: 1518752467022421067, guid: ce704f59cd8706e4f984a07a1eb3fe4c, type: 3}
+  hazard: {fileID: 2556920805324806710, guid: ce704f59cd8706e4f984a07a1eb3fe4c, type: 3}
 --- !u!4 &965691262
 Transform:
   m_ObjectHideFlags: 0
