@@ -14,7 +14,7 @@ public class OtherText : MonoBehaviour
     private TextMeshProUGUI restartMessageText;
     private TextMeshProUGUI levelText;
     private Scoring scoring;
-    private const int SecondsPerLevel = 5;
+    private const int SecondsPerLevel = 50;
     private const int LevelCountBeforeInfiniteLevel = 10;
 
     void Start()
