@@ -14,6 +14,12 @@ public class Scoring : MonoBehaviour
 
 
     private bool display= false;
+    
+    public bool GetDisplayState()
+    {
+        return display;
+    }
+
 
     private int randnum = 0;
 
@@ -208,64 +214,7 @@ public class Scoring : MonoBehaviour
         }
         return statement;
     }
-
-
-    public string getLevelMessage()
-    {
-        string statement = "";
-        if(!display)
-        {
-            if (score >= 1 && score <= 2)
-            {
-                statement = "Level 1";
-            }
-            if (score >= 50 && score <= 51)
-            {
-                statement = "Level 2";
-            }
-            if (score >= 100 && score <= 101)
-            {
-                statement = "Level 3";
-            }
-            if (score >= 150 && score <= 151)
-            {
-                statement = "Level 4";
-            }
-            if (score >= 200 && score <= 201)
-            {
-                statement = "Level 5";
-            }
-            if (score >= 250 && score <= 251)
-            {
-                statement = "Level 6";
-            }
-            if (score >= 300 && score <= 301)
-            {
-                statement = "Level 7";
-            }
-            if (score >= 350 && score <= 351)
-            {
-                statement = "Level 8";
-            }
-            if (score >= 400 && score <= 401)
-            {
-                statement = "Level 9";
-            }
-            if (score >= 450 && score <= 451)
-            {
-                statement = "Level 10";
-            }
-            if (score >= 500 && score <= 501)
-            {
-                statement = "Level Infinity...";
-            }
-        }
-        else{
-            statement = "";
-        }
-        return statement;
-    }
-
+    
 
 
     public void SetPlayState(int state)
