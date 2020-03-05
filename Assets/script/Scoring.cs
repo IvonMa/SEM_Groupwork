@@ -21,7 +21,7 @@ public class Scoring : MonoBehaviour
     }
 
 
-    private int randnum = 0;
+    
 
     System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
 
@@ -30,25 +30,11 @@ public class Scoring : MonoBehaviour
     private const int PAUSED = 1;
     private const int PLAYING = 2;
     private const int DEATH = 3;
-    public List<string> randfacts = new List<string>();
+    
     void Awake() 
     {
         instance = this;
-
-
-        try{
-        string path = "Assets/SpaceFacts.txt";
-
-        string line; //current line
-        System.IO.StreamReader file = new System.IO.StreamReader(path);
-        while((line = file.ReadLine()) != null)
-        {
-            randfacts.Add(line);
-        }
-    }
-    catch(Exception e){}
-        
-         
+ 
     }
 
     public static Scoring getInstance()
@@ -111,110 +97,7 @@ public class Scoring : MonoBehaviour
         else return 0;
     }
 
-    public void getRandNumberIndex()
-    {
-        randnum = UnityEngine.Random.Range(0,randfacts.Count);
-        
-    }
 
-    public string getRandomFact()
-    {
-        string fact = "";
-        if (display)
-        {
-            fact = "Fact:\n" + randfacts[randnum];
-            // // Unit Test Start
-            // if(fact.Equals("")) Debug.Log("Got empty random fact.");
-            // // Unit Test End
-        }
-        if (score == 0)
-        {
-            fact = "Fact:\n" + randfacts[randnum];
-            // // Unit Test Start
-            // if(fact.Equals("")) Debug.Log("Got empty random fact.");
-            // // Unit Test End
-        }
-        return fact;
-    }
-
-    public string getInstructions()
-    {
-        string instr = "";
-        if (score == 0)
-        {
-            instr = "                         How to play: \n\n" +
-                "               Click spacebar to Jump\n\n" +
-                "But not too high or you'll get lost in space"; 
-        }
-        return instr;
-    }
-    public string getTitle()
-    {
-        string instr = "";
-        if (score == 0)
-        {
-            instr = "Protect the Planet"; 
-        }
-
-        //unit test
-        //if string 'instr' is empty, then the title is not being saved
-        //if(instr == "")
-        //{
-        //    Debug.Log("Title not being saved");
-        //}
-        return instr;
-    }
-    public string getGameEnd()
-    {
-        string statement = "";
-        if (display)
-        {
-            statement = "Game Over!"; 
-        }
-        return statement;
-    }
-    public string getWinStatement()
-    {
-        string statement = "";
-        if (display)
-        {
-            if(getCurrentScore() == getHighScore())
-            {
-                statement = "Congratulations, New High Score!"; 
-            }
-            else{
-                statement = "";
-            }
-        }
-        return statement;
-    }
-    public string getLoseStatement()
-    {
-        string statement = "";
-        if (display)
-        {
-            if(getCurrentScore() == getHighScore())
-            {
-                statement = ""; 
-            }
-            else{
-                statement = "Unlucky, better luck next time...";
-            }
-        }
-        return statement;
-    }
-
-
-    public string getRestartMessage()
-    {
-        string statement = "";
-        if (display)
-        {
-            statement = "Click spacebar to restart...";
-        }
-        return statement;
-    }
-    
 
 
     public void SetPlayState(int state)

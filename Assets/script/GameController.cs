@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
         
 
 
-        Scoring.getInstance().getRandNumberIndex();
+        OtherText.GetInstance().getRandNumberIndex();
 
         asteroids = new List<GameObject>();
         StartCoroutine(SpawnAsteroids());
@@ -155,7 +155,7 @@ public class GameController : MonoBehaviour
             case(DEATH):
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Scoring.getInstance().getRandNumberIndex();
+                    OtherText.GetInstance().getRandNumberIndex();
                     gameState= PAUSED;
                     playerHandler.SetPlayState(PAUSED);
                     scoringHandler.SetPlayState(PAUSED);
@@ -178,7 +178,7 @@ public class GameController : MonoBehaviour
            
         if(gameState!= DEATH)
         {
-            Scoring.getInstance().getRandNumberIndex();
+            OtherText.GetInstance().getRandNumberIndex();
         }
         gameState = DEATH;
         foreach(GameObject asteroid in asteroids)
