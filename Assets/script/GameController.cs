@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
 
     private float scaleBuffer = 0.1f;
     private float scaleMin = 0.25f;
-    private float scaleMax = 0.65f;
+    private float scaleMax = 0.50f;
 
     private float speedMin = 2.0f;
     private float speedMax = 3.0f;
