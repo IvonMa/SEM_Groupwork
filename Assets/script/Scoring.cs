@@ -136,7 +136,9 @@ public class Scoring : MonoBehaviour
         string instr = "";
         if (score == 0)
         {
-            instr = "How to play: \n\nClick spacebar to Jump\n\n\n\n But not too high or you'll get lost in space\n\nGood luck!"; 
+            instr = "                         How to play: \n\n" +
+                "               Click spacebar to Jump\n\n" +
+                "   not too high or you'll get lost in space"; 
         }
         return instr;
     }
